@@ -1,13 +1,12 @@
 import type { DigestReadResult, DigestRow } from '../digest/types.js';
+import { sortDigestRows } from '../digest/sortRows.js';
 
 function isMarked(row: DigestRow): boolean {
   return row.retries >= 3 || row.lastStatus === 'fail';
 }
 
 export function DigestPage({ night, result }: { night: string; result: DigestReadResult }) {
-  const rows = [...result.rows].sort((left, right) =>
-    left.job < right.job ? -1 : left.job > right.job ? 1 : 0,
-  );
+  const rows = sortDigestRows(result.rows);
 
   return (
     <>
