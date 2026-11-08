@@ -10,6 +10,7 @@ describe('readNight', () => {
     const result = readNight(runsDir, '2026-10-28');
 
     expect(result.malformedLines).toBe(1);
+    expect(result.counts).toEqual({ ok: 10, retry: 4, fail: 1 });
     expect(result.rows).toEqual([
       {
         job: 'rig/rotate-logs',
@@ -81,6 +82,7 @@ describe('readNight', () => {
         },
       ],
       malformedLines: 1,
+      counts: { ok: 1, retry: 1, fail: 0 },
     });
   });
 });

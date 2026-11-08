@@ -36,6 +36,7 @@ export function readNight(runsDir: string, night: string): DigestReadResult {
 
   const rowsByJob = new Map<string, DigestRow>();
   let malformedLines = 0;
+  const counts = { ok: 0, retry: 0, fail: 0 };
 
   for (const line of lines) {
     let value: unknown;
@@ -52,6 +53,7 @@ export function readNight(runsDir: string, night: string): DigestReadResult {
       continue;
     }
 
+    counts[entry.status]++;
     const row = rowsByJob.get(entry.job);
     if (!row) {
       rowsByJob.set(entry.job, {
@@ -75,5 +77,5 @@ export function readNight(runsDir: string, night: string): DigestReadResult {
     row.lastAt = entry.at;
   }
 
-  return { rows: [...rowsByJob.values()], malformedLines };
+  return { rows: [...rowsByJob.values()], malformedLines, counts };
 }
