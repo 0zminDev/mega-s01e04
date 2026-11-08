@@ -3,7 +3,7 @@ name: Publish digest preview
 on:
   workflow_dispatch:
     inputs:
-      LANE_MARKER:
+      lane_marker:
         description: Optional lane marker shown in the preview
         required: false
         type: string
@@ -25,7 +25,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
-      LANE_MARKER: ${{ inputs.LANE_MARKER }}
+      LANE_MARKER: ${{ inputs.lane_marker }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
