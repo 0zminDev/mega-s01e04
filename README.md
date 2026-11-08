@@ -9,4 +9,7 @@ pnpm install
 pnpm dev               # http://localhost:8787
 ```
 
+Render the 2026-10-28 digest as one HTML document on stdout with
+`pnpm --silent export:digest` (set `LANE_MARKER` to add its banner).
+
 Working on it with an agent: start at [AGENTS.md](AGENTS.md).
