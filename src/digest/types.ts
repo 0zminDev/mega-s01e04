@@ -11,4 +11,9 @@ export type DigestRow = {
   lastAt: string;
 };
 
-export declare function readNight(runsDir: string, night: string): DigestRow[];
+export type DigestReadResult = {
+  rows: DigestRow[];
+  malformedLines: number;
+};
+
+export declare function readNight(runsDir: string, night: string): DigestReadResult;
